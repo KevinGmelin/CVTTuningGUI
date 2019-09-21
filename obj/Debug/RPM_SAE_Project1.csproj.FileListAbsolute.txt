@@ -1,0 +1,12 @@
+C:\Users\Stevens User\Desktop\Stevens Classes\SAE\RPM_SAE_Project1\bin\Debug\RPM_SAE_Project1.exe.config
+C:\Users\Stevens User\Desktop\Stevens Classes\SAE\RPM_SAE_Project1\bin\Debug\RPM_SAE_Project1.exe
+C:\Users\Stevens User\Desktop\Stevens Classes\SAE\RPM_SAE_Project1\bin\Debug\RPM_SAE_Project1.pdb
+C:\Users\Stevens User\Desktop\Stevens Classes\SAE\RPM_SAE_Project1\obj\Debug\RPM_SAE_Project1.csprojAssemblyReference.cache
+C:\Users\Stevens User\Desktop\Stevens Classes\SAE\RPM_SAE_Project1\obj\Debug\RPM_SAE_Project1.Form1.resources
+C:\Users\Stevens User\Desktop\Stevens Classes\SAE\RPM_SAE_Project1\obj\Debug\RPM_SAE_Project1.Properties.Resources.resources
+C:\Users\Stevens User\Desktop\Stevens Classes\SAE\RPM_SAE_Project1\obj\Debug\RPM_SAE_Project1.csproj.GenerateResource.cache
+C:\Users\Stevens User\Desktop\Stevens Classes\SAE\RPM_SAE_Project1\obj\Debug\RPM_SAE_Project1.csproj.CoreCompileInputs.cache
+C:\Users\Stevens User\Desktop\Stevens Classes\SAE\RPM_SAE_Project1\obj\Debug\RPM_SAE_Project1.exe
+C:\Users\Stevens User\Desktop\Stevens Classes\SAE\RPM_SAE_Project1\obj\Debug\RPM_SAE_Project1.pdb
+C:\Users\Stevens User\Desktop\Stevens Classes\SAE\RPM_SAE_Project1\bin\Debug\AGauge.dll
+C:\Users\Stevens User\Desktop\Stevens Classes\SAE\RPM_SAE_Project1\obj\Debug\RPM_SAE_Project1.csproj.CopyComplete
