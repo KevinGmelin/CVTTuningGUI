@@ -29,6 +29,7 @@ namespace RPM_SAE_Project1
             InitializeComponent();
             InitializeSpeedGauge();
             InitializeERPMGauge();
+            Program.arduinoComm.CommInit();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -87,6 +88,14 @@ namespace RPM_SAE_Project1
         }
         private void Button_LogData_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Program.arduinoComm.test();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
         }
 

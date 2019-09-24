@@ -8,6 +8,7 @@ namespace RPM_SAE_Project1
 {
     static class Program
     {
+        public static ArduinoComm arduinoComm = new ArduinoComm();
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
