@@ -15,6 +15,9 @@ namespace RPM_SAE_Project1
         #region Fields & Constants
         private AGauge mSpeedGauge;
         private AGauge mERPMGauge;
+        private bool mbLoggingData = false;
+        private long mlLastTimeStamp; //tracks the last time stamp sent by the arduino
+        private string msDataLog;
 
         private const int BASE_ARC_START_ANGLE_SPEED = 135;
         private const int BASE_ARC_SWEEP_ANGLE_SPEED = 270;
@@ -88,15 +91,17 @@ namespace RPM_SAE_Project1
         }
         private void Button_LogData_Click(object sender, EventArgs e)
         {
-            try
+            if (mbLoggingData == false)
             {
-                Program.arduinoComm.test();
+                msDataLog = "";
+                mbLoggingData = true;
+                button_LogData.Text = "Stop Logging Data";
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.ToString());
+                mbLoggingData = false;
+                button_LogData.Text = "Start Logging Data";
             }
-
         }
 
         private void Panel_mERPMGauge_Paint(object sender, PaintEventArgs e)
@@ -111,27 +116,36 @@ namespace RPM_SAE_Project1
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if (mSpeedGauge.Value == mSpeedGauge.MaxValue)
+            //if (mSpeedGauge.Value == mSpeedGauge.MaxValue)
+            //{
+            //    mbIsIncreasing = false;
+            //}
+            //else if (mSpeedGauge.Value == 0)
+            //{
+            //    mbIsIncreasing = true;
+            //}
+            //if (mbIsIncreasing == true)
+            //{
+            //    mSpeedGauge.Value++;
+            //    mERPMGauge.Value++;
+            //}
+            //else
+            //{
+            //    mSpeedGauge.Value--;
+            //    mERPMGauge.Value--;
+            //}
+            mSpeedGauge.Value = Program.arduinoComm.wheelRPM;
+            mERPMGauge.Value = Program.arduinoComm.engineRPM;
+            if (mbLoggingData == true)
             {
-                mbIsIncreasing = false;
+                if (Program.arduinoComm.timeStamp != mlLastTimeStamp)
+                {
+                    msDataLog += Program.arduinoComm.timeStamp.ToString() + ", " +
+                    Program.arduinoComm.wheelRPM.ToString() + ", " +
+                    Program.arduinoComm.engineRPM.ToString() + Environment.NewLine; //creates new line after data
+                    mlLastTimeStamp = Program.arduinoComm.timeStamp;
+                }
             }
-            else if (mSpeedGauge.Value == 0)
-            {
-                mbIsIncreasing = true;
-            }
-            if (mbIsIncreasing == true)
-            {
-                mSpeedGauge.Value++;
-                mERPMGauge.Value++;
-            }
-            else
-            {
-                mSpeedGauge.Value--;
-                mERPMGauge.Value--;
-            }
-
-
-
         }
     }
 }
