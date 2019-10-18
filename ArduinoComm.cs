@@ -12,8 +12,8 @@ namespace RPM_SAE_Project1
     {
         bool _continue = true;
         private Thread mReadThread;
-        private float mfEngineRPM;
-        private float mfWheelRPM;
+        private long mfEngineCount;
+        private long mfWheelCount;
         private readonly Object mDataLock = new Object();
         private long mlTimeStamp;
 
@@ -31,22 +31,22 @@ namespace RPM_SAE_Project1
             mReadThread.Start();
         }
 
-        public float engineRPM { //gets engineRPM once engineRPM is unlocked
+        public long engineCount { //gets engineRPM once engineRPM is unlocked
             get 
             {
                 lock (mDataLock) //for multiple threads
                 {
-                    return mfEngineRPM;
+                    return mfEngineCount;
                 }
             }
         }
 
-        public float wheelRPM { // gets wheelRPM once wheelRPM is unlocked
+        public long wheelCount { // gets wheelRPM once wheelRPM is unlocked
             get
             {
                 lock (mDataLock)
                 {
-                    return mfWheelRPM;
+                    return mfWheelCount;
                 }
             }
         }
@@ -78,8 +78,8 @@ namespace RPM_SAE_Project1
                         lock (mDataLock)
                         {
                             mlTimeStamp = long.Parse(data[0]);
-                            mfEngineRPM = float.Parse(data[1]);
-                            mfWheelRPM = float.Parse(data[2]);
+                            mfEngineCount = long.Parse(data[1]);
+                            mfWheelCount = long.Parse(data[2]);
                             
                         }
                         Console.WriteLine(message);

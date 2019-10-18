@@ -14,7 +14,7 @@ namespace RPM_SAE_Project1
     {
         #region Fields & Constants
         private AGauge mSpeedGauge;
-        private AGauge mERPMGauge;
+        private AGauge mEngRPMGauge;
         private bool mbLoggingData = false;
         private long mlLastTimeStamp; //tracks the last time stamp sent by the arduino
         private string msDataLog;
@@ -22,7 +22,6 @@ namespace RPM_SAE_Project1
         private const int BASE_ARC_START_ANGLE_SPEED = 135;
         private const int BASE_ARC_SWEEP_ANGLE_SPEED = 270;
         private const uint DEFAULT_MAX_DIAL_SPEED = 500;
-        private bool mbIsIncreasing = true;
 
         #endregion
 
@@ -72,7 +71,7 @@ namespace RPM_SAE_Project1
         /// </summary>
         private void InitializeERPMGauge()
         {
-            mERPMGauge = new AGauge
+            mEngRPMGauge = new AGauge
             {
                 MinValue = 0,
                 MaxValue = DEFAULT_MAX_DIAL_SPEED,
@@ -101,48 +100,35 @@ namespace RPM_SAE_Project1
             {
                 mbLoggingData = false;
                 button_LogData.Text = "Start Logging Data";
+                string fileBaseName = "DataLog";
+                int i = 1;
+                string fileName;
+                bool found = false;
+                //while (!found)
+                //{
+                //    fileName = fileBaseName + i.ToString() + ".txt";
+                //    if (System.IO.File.Exists(fileName))
+                //    {
+                //        founn = true;
+                //    }
+                //    i++;
+                //}
+                System.IO.File.WriteAllText("DataLog.csv", msDataLog);
             }
         }
 
-        private void Panel_mERPMGauge_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Panel_mSpeedGauge_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            //if (mSpeedGauge.Value == mSpeedGauge.MaxValue)
-            //{
-            //    mbIsIncreasing = false;
-            //}
-            //else if (mSpeedGauge.Value == 0)
-            //{
-            //    mbIsIncreasing = true;
-            //}
-            //if (mbIsIncreasing == true)
-            //{
-            //    mSpeedGauge.Value++;
-            //    mERPMGauge.Value++;
-            //}
-            //else
-            //{
-            //    mSpeedGauge.Value--;
-            //    mERPMGauge.Value--;
-            //}
-            mSpeedGauge.Value = Program.arduinoComm.wheelRPM;
-            mERPMGauge.Value = Program.arduinoComm.engineRPM;
+            mSpeedGauge.Value = Program.arduinoComm.wheelCount;
+            mEngRPMGauge.Value = Program.arduinoComm.engineCount;
             if (mbLoggingData == true)
             {
                 if (Program.arduinoComm.timeStamp != mlLastTimeStamp)
                 {
                     msDataLog += Program.arduinoComm.timeStamp.ToString() + ", " +
-                    Program.arduinoComm.wheelRPM.ToString() + ", " +
-                    Program.arduinoComm.engineRPM.ToString() + Environment.NewLine; //creates new line after data
+                    Program.arduinoComm.wheelCount.ToString() + ", " +
+                    Program.arduinoComm.engineCount.ToString() + Environment.NewLine; //creates new line after data
                     mlLastTimeStamp = Program.arduinoComm.timeStamp;
                 }
             }
