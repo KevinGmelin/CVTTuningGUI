@@ -120,15 +120,15 @@ namespace RPM_SAE_Project1
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            mSpeedGauge.Value = Program.arduinoComm.wheelCount;
-            mEngRPMGauge.Value = Program.arduinoComm.engineCount;
+            mSpeedGauge.Value = Program.arduinoComm.wheelRPM;
+            mEngRPMGauge.Value = Program.arduinoComm.engineRPM;
             if (mbLoggingData == true)
             {
                 if (Program.arduinoComm.timeStamp != mlLastTimeStamp)
                 {
                     msDataLog += Program.arduinoComm.timeStamp.ToString() + ", " +
-                    Program.arduinoComm.wheelCount.ToString() + ", " +
-                    Program.arduinoComm.engineCount.ToString() + Environment.NewLine; //creates new line after data
+                    Program.arduinoComm.wheelRPM.ToString() + ", " +
+                    Program.arduinoComm.engineRPM.ToString() + Environment.NewLine; //creates new line after data
                     mlLastTimeStamp = Program.arduinoComm.timeStamp;
                 }
             }
