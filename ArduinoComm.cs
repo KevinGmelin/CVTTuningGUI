@@ -31,7 +31,7 @@ namespace RPM_SAE_Project1
             mReadThread.Start();
         }
 
-        public long engineCount { //gets engineCount once engineCount is unlocked
+        public long engineCount { //gets engineRPM once engineRPM is unlocked
             get 
             {
                 lock (mDataLock) //for multiple threads
@@ -41,46 +41,12 @@ namespace RPM_SAE_Project1
             }
         }
 
-        public long wheelCount { // gets wheelCount once wheelCount is unlocked
+        public long wheelCount { // gets wheelRPM once wheelRPM is unlocked
             get
             {
                 lock (mDataLock)
                 {
                     return mfWheelCount;
-                }
-            }
-        }
-
-        public long engineRPM
-        {
-            get
-            {
-                lock (mDataLock)
-                {
-                    //Converts engineCount to engineRPM
-                    return mfWheelCount * 60 / 250 / 6;
-                }
-            }
-        }
-
-        public long wheelRPM
-        {
-            get
-            {
-                lock (mDataLock)
-                {
-                    return mfEngineCount * 60 / 250 / 5;
-                }
-            }
-        }
-
-        public float velocity //Converts wheelCount to Velocity (mph)
-        {
-            get
-            {
-                lock (mDataLock)
-                {
-                    return (float)Math.PI * (mfEngineCount * 60 / 250 / 5) / 1056;
                 }
             }
         }

@@ -120,8 +120,8 @@ namespace RPM_SAE_Project1
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            mSpeedGauge.Value = Program.arduinoComm.velocity;
-            mEngRPMGauge.Value = Program.arduinoComm.engineRPM;
+            mSpeedGauge.Value = Program.arduinoComm.wheelCount;
+            mEngRPMGauge.Value = Program.arduinoComm.engineCount;
             if (mbLoggingData == true)
             {
                 if (Program.arduinoComm.timeStamp != mlLastTimeStamp)
